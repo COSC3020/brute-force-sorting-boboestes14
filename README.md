@@ -20,3 +20,10 @@ randomly without memory instead of systematically trying them?
 
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
+
+
+## Runtime Analysis
+
+The runtime complexity of my algorithm would be n*n!. Because no matter what we have to check if the array is sorted which takes n time, then we have to run through the permutations which can take up to n! Time. so therefore the time complexity would be n*n!. The best case for time complexity is n, the worst case would be n*n!. 
+
+If there weren't stored memory, then the complexity would change to be in the worst case infinity, in the best case it would still be n, and on average it would take n*n! Time to complete.
