@@ -1,33 +1,39 @@
+const { check } = require("jsverify")
+
+
 function permutationSort(a) {
-    attempts = {}
-    sorted = false
-    while(sorted == false){
-        attempts[JSON.stringify(a)] = (attempts[JSON.stringify(a)] || 0)+1
-        if(attempts[JSON.stringify(a)] == 1){
-            for(i = 0; i < a.length-1; i++){
-                if(a[i] <= a[i+1]){
-                    sorted = true
-                }
-                else{
-                    sorted = false
-                    i = a.length
-                }
-            }
-        }
-        if(a.length <= 1){
-            sorted = true
-        }
-        if(sorted == false){
-            a = shuffle(a)
-        }
+    right = false
+    if(a.length <= 1){
+        return [0, a]
     }
-    const ke = Object.keys(a)
-    return [ke.length, a];
+    arr = option(a, [])
+    return [0, arr]
 }
 
-//i found an array shuffler online and made some modifications
-const shuffle = (ar) => { 
-    return ar.map((ab) => ({ sort: Math.random(), value: ab }))
-        .sort((ab, b) => ab.sort - b.sort)
-        .map((ab) => ab.value); 
+function order(abb){
+    for(i = 0; i < abb.length-1; i++){
+        if(abb[i] > abb[i+1]){
+            return false
+        }
+    }
+    return true
+}
+
+function option(arr3, guess){
+    arr3.forEach((num, index) => {
+        if(right == false){
+            guess.push(num)
+            option(arr3.slice(0, index).concat(arr3.slice(index+1)), guess)
+            if(right == false){
+                guess.pop()
+            }
+        }
+    });
+    if(arr3.length == 0){
+        if(order(guess) == true){
+            right = true
+            return guess
+        }
+    }
+    return guess
 }
